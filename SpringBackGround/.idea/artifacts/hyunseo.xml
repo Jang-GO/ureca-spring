@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="hyunseo">
+    <output-path>$PROJECT_DIR$/out/artifacts/hyunseo</output-path>
+    <root id="archive" name="hyunseo.jar">
+      <element id="file-copy" path="$PROJECT_DIR$/out/production/SpringBackGround/workshop/Chicken.class" />
+      <element id="file-copy" path="$PROJECT_DIR$/out/production/SpringBackGround/workshop/Food.class" />
+    </root>
+  </artifact>
+</component>
