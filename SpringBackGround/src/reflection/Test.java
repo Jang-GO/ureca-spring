@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
 public class Test {
     public static void main(String[] args) throws Exception {
         Class<?> userClass = Class.forName("reflection.User");
+        Class<User> userClass1 = User.class;
 
         // class 이름
 //        System.out.println(userClass.getName());
