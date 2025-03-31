@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="cheese" class="com.mycom.workshop.pizza.xml.ingredient.Cheese"></bean>
+    <bean id="pepperoni" class="com.mycom.workshop.pizza.xml.ingredient.Pepperoni"></bean>
+    <bean id="hawaiian" class="com.mycom.workshop.pizza.xml.ingredient.Hawaiian"></bean>
+
+    <bean id="chef" class="com.mycom.workshop.pizza.xml.Chef">
+    </bean>
+</beans>
