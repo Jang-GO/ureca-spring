@@ -2,7 +2,6 @@ package mycom.springbootmvc.controller;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -16,6 +15,7 @@ public class SessionController {
             //  서버 공간인 session 에 username 을 추가
             session.setAttribute("username", username);
         }
+
         return "sessionTest1";
     }
 
