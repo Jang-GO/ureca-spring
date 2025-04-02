@@ -1,0 +1,11 @@
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+    <h1>도서 수정 완료(*~*)</h1>
+    <a href="/books/list">도서 목록</a><br>
+</body>
+</html>
