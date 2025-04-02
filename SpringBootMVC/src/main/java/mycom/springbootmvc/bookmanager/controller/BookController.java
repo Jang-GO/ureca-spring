@@ -1,5 +1,7 @@
-package mycom.springbootmvc.bookmanager;
+package mycom.springbootmvc.bookmanager.controller;
 
+import mycom.springbootmvc.bookmanager.dto.BookDto;
+import mycom.springbootmvc.bookmanager.service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

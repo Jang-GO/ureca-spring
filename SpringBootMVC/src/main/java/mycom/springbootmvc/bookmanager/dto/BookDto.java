@@ -1,4 +1,4 @@
-package mycom.springbootmvc.bookmanager;
+package mycom.springbootmvc.bookmanager.dto;
 
 public class BookDto {
 

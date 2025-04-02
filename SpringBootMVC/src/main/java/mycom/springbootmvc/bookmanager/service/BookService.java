@@ -1,4 +1,6 @@
-package mycom.springbootmvc.bookmanager;
+package mycom.springbootmvc.bookmanager.service;
+
+import mycom.springbootmvc.bookmanager.dto.BookDto;
 
 import java.util.List;
 

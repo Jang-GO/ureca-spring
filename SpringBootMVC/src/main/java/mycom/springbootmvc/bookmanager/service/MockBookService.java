@@ -1,5 +1,6 @@
-package mycom.springbootmvc.bookmanager;
+package mycom.springbootmvc.bookmanager.service;
 
+import mycom.springbootmvc.bookmanager.dto.BookDto;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
