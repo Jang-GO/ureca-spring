@@ -1,0 +1,26 @@
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/madang
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
+
+# session
+server:
+  servlet:
+    session:
+      persistent: false
+
+# mybatis
+mybatis:
+  # classpath = src/main/resources
+  config-location: classpath:config/mybatis-config.xml
+
+logging:
+  level:
+    mycom:
+      springbootmvcmybatis: debug

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mycom.springbootmvcmybatis.emp.dao.EmpDao">
+    <!--camel 표기법 사용 전-->
+<!--    <select id="listEmp" resultType="mycom.springbootmvcmybatis.emp.dto.EmpDto">-->
+<!--        select employeeId, first_name firstName, last_name lastName, email, hiredate hireDate-->
+<!--        from emp;-->
+<!--    </select>-->
+
+<!--    <select id="detailEmp" resultType="mycom.springbootmvcmybatis.emp.dto.EmpDto" parameterType="int">-->
+<!--        select employeeId, first_name firstName, last_name lastName, email, hiredate hireDate-->
+<!--        from emp-->
+<!--        where employeeId = #{employeeId};-->
+<!--    </select>-->
+
+<!--    <insert id="insertEmp" parameterType="mycom.springbootmvcmybatis.emp.dto.EmpDto">-->
+<!--        insert into emp ( employeeId, first_name, last_name, email, hiredate )-->
+<!--        values ( #{employeeId}, #{firstName} , #{lastName}, #{email}, #{hireDate} )-->
+<!--    </insert>-->
+
+<!--    <update id="updateEmp" parameterType="mycom.springbootmvcmybatis.emp.dto.EmpDto">-->
+<!--        update emp-->
+<!--        set first_name = #{firstName},-->
+<!--            last_name = #{lastName},-->
+<!--            email = #{email},-->
+<!--            hiredate = #{hireDate}-->
+<!--        where employeeId = #{employeeId};-->
+<!--    </update>-->
+
+<!--    <delete id="deleteEmp" parameterType="int">-->
+<!--        delete from emp where employeeId = #{employeeId};-->
+<!--    </delete>-->
+
+<!--     camel 표기법 처리 후-->
+        <select id="listEmp" resultType="mycom.springbootmvcmybatis.emp.dto.EmpDto">
+            select employeeId, first_name , last_name , email, hiredate
+            from emp;
+        </select>
+
+        <select id="detailEmp" resultType="mycom.springbootmvcmybatis.emp.dto.EmpDto" parameterType="int">
+            select employeeId, first_name , last_name , email, hiredate
+            from emp
+            where employeeId = #{employeeId};
+        </select>
+
+        <insert id="insertEmp" parameterType="mycom.springbootmvcmybatis.emp.dto.EmpDto">
+            insert into emp ( employeeId, first_name, last_name, email, hiredate )
+            values ( #{employeeId}, #{firstName} , #{lastName}, #{email}, #{hireDate} )
+        </insert>
+
+        <update id="updateEmp" parameterType="mycom.springbootmvcmybatis.emp.dto.EmpDto">
+            update emp
+            set first_name = #{firstName},
+                last_name = #{lastName},
+                email = #{email},
+                hiredate = #{hireDate}
+            where employeeId = #{employeeId};
+        </update>
+
+        <delete id="deleteEmp" parameterType="int">
+            delete from emp where employeeId = #{employeeId};
+        </delete>
+</mapper>
