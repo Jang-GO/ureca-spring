@@ -4,10 +4,7 @@ import hello.springbootmvcboard.auth.service.LoginService;
 import hello.springbootmvcboard.user.dto.UserDto;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,11 +29,17 @@ public class LoginController {
 
         if(optional.isPresent()){
             UserDto dto = optional.get();
-            session.setAttribute("userDto", dto);
+            session.setAttribute("userDto", dto); // session 은 timeout 이 존재 (디폴트 30분)
 
             map.put("result", "success");
         }else map.put("result", "fail");
 
         return map;
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "login";
     }
 }

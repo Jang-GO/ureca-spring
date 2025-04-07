@@ -24,11 +24,11 @@
     <form novalidate>
         <div class="mb-3">
             <label for="userEmail" class="form-label">Email</label>
-            <input type="email" class="form-control" id="userEmail" aria-describedby="Enter Email">
+            <input type="email" class="form-control" id="userEmail" aria-describedby="Enter Email" value="jang@jang.com">
         </div>
         <div class="mb-3">
             <label for="userPassword" class="form-label">Password</label>
-            <input type="password" class="form-control" id="userPassword" aria-describedby="Enter Password">
+            <input type="password" class="form-control" id="userPassword" aria-describedby="Enter Password" value="1234">
         </div>
 
     </form>

@@ -1,5 +1,6 @@
 package hello.springbootmvcboard.common;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -20,4 +21,11 @@ public class PageController {
     public String board(){
         return "board";
     }
+
+    // login controller 에 위치
+//    @GetMapping("/pages/logout")
+//    public String logout(HttpSession session){
+//        session.invalidate();
+//        return "login";
+//    }
 }
