@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hello.phonemanager.repository.OwnerRepository">
+
+    <!-- 회원가입: Owner 등록 -->
+    <insert id="insertOwner" parameterType="hello.phonemanager.domain.Owner">
+        INSERT INTO owner (username, password, name, created_at)
+        VALUES (#{username}, #{password}, #{name}, now());
+    </insert>
+
+    <!-- 로그인: username으로 Owner 조회 -->
+    <select id="findByUsername" resultType="hello.phonemanager.domain.Owner">
+        SELECT id, username, password, name
+        FROM owner
+        WHERE username = #{username}
+            LIMIT 1
+    </select>
+
+    <!-- 비밀번호 확인 -->
+    <select id="checkPassword" resultType="boolean">
+        SELECT COUNT(*) > 0
+        FROM owner
+        WHERE username = #{username} AND password = #{password}
+    </select>
+
+    <select id="findById" resultType="hello.phonemanager.domain.Owner" parameterType="Long">
+        SELECT id, username, password, name
+        FROM owner
+        WHERE id = #{ownerId}
+    </select>
+
+    <select id="findByShopId" resultType="hello.phonemanager.domain.Owner" parameterType="Long">
+        SELECT o.*
+        FROM owner o
+                 JOIN shop s ON o.id = s.owner_id
+        WHERE s.id = #{shopId}
+    </select>
+</mapper>

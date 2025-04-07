@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hello.phonemanager.repository.ShopRepository">
+
+    <insert id="insertShop">
+        INSERT INTO shop(name, address, owner_id, created_at)
+        VALUES (#{name}, #{address}, #{ownerId}, now())
+    </insert>
+
+    <select id="findByOwnerId" resultType="hello.phonemanager.domain.Shop" parameterType="Long">
+        SELECT * FROM shop WHERE owner_id = #{ownerId}
+    </select>
+
+    <select id="findById" resultType="hello.phonemanager.domain.Shop" parameterType="Long">
+        SELECT * FROM shop WHERE id = #{id}
+    </select>
+
+    <update id="updateShop" parameterType="hello.phonemanager.domain.Shop">
+        UPDATE shop
+        SET name = #{name}, address = #{address}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteShop" parameterType="Long">
+        DELETE FROM shop WHERE id = #{id}
+    </delete>
+
+    <select id="countByOwnerId" parameterType="Long" resultType="int">
+        SELECT COUNT(*)
+        FROM shop
+        WHERE owner_id = #{ownerId}
+    </select>
+</mapper>

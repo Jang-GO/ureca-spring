@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hello.phonemanager.repository.SaleRepository">
+    <!-- SaleMapper.xml -->
+    <select id="findSalesByOwnerId" resultType="hello.phonemanager.domain.dto.SaleDetail">
+        SELECT
+            s.quantity,
+            s.sale_price,
+            s.sale_date,
+            sh.name AS shopName,
+            p.name AS phoneName
+        FROM sale s
+                 JOIN shop sh ON s.shop_id = sh.id
+                 JOIN phone p ON s.phone_id = p.id
+        WHERE sh.owner_id = #{ownerId}
+        ORDER BY s.sale_date DESC
+    </select>
+
+    <select id="calculateTotalRevenueByOwnerId" resultType="int">
+        SELECT COALESCE(SUM(s.sale_price * s.quantity), 0)
+        FROM sale s
+                 JOIN shop sh ON s.shop_id = sh.id
+        WHERE sh.owner_id = #{ownerId}
+    </select>
+
+
+    <!-- 소유자별 이번 달 판매 건수 카운트 -->
+    <select id="countMonthlySalesByOwnerId" parameterType="Long" resultType="int">
+        SELECT COUNT(*)
+        FROM sale s
+                 JOIN shop sh ON s.shop_id = sh.id
+        WHERE sh.owner_id = #{ownerId}
+          AND s.sale_date BETWEEN DATE_FORMAT(CURRENT_DATE, '%Y-%m-01') AND LAST_DAY(CURRENT_DATE)
+    </select>
+
+    <insert id="save" parameterType="hello.phonemanager.domain.Sale">
+        INSERT INTO sale (shop_id, phone_id, quantity, sale_price, sale_date)
+        VALUES (#{shopId}, #{phoneId}, #{quantity}, #{salePrice}, #{saleDate})
+    </insert>
+</mapper>
