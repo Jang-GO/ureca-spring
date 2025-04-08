@@ -3,6 +3,9 @@ package hello.springbootmvcboard.common;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.time.LocalDateTime;
 
 @Controller
 public class PageController {
@@ -22,10 +25,11 @@ public class PageController {
         return "board";
     }
 
-    // login controller 에 위치
-//    @GetMapping("/pages/logout")
-//    public String logout(HttpSession session){
-//        session.invalidate();
-//        return "login";
-//    }
+    // 페이지 이름과 상관 없는 테스트 용도
+
+    @GetMapping("/pages/json")
+    @ResponseBody
+    public LocalDateTime json(){
+        return LocalDateTime.now();
+    }
 }
