@@ -10,9 +10,17 @@ import java.util.List;
 public interface BoardDao {
 
     List<BoardDto> listBoard(BoardParamDto boardParamDto); // limit, offset
+
     int listBoardTotalCount(); //
 
     // 검색어
     List<BoardDto> listBoardSearchWord(BoardParamDto boardParamDto); // limit, offset, searchWord
+
     int listBoardSearchWordTotalCount(BoardParamDto boardParamDto); // searchWord
+
+    BoardDto detailBoard(BoardParamDto boardParamDto);
+
+    int insertBoard(BoardDto boardDto);
+    int updateBoard(BoardDto boardDto);
+    int deleteBoard(int boardId);
 }
