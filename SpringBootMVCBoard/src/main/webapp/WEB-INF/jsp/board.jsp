@@ -68,6 +68,7 @@
         <tbody id = "boardTbody">
         </tbody>
     </table>
+    <div id = "paginationWrapper"></div>
     <button type="button" id="btnInsertPage" class="btn btn-primary">글쓰기</button>
 
 </div>
@@ -157,6 +158,10 @@
     let OFFSET = 0;
     let SEARCH_WORD = '';
     let TOTAL_LIST_COUNT = 0;
+
+    let PAGE_LINK_COUNT = 10; // 페이지에 보여줄 Pagenation Button 수
+    let CURRENT_PAGE_INDEX = 1; // Pagination 버튼 중 현재 페이지 번호
+
     window.onload = function() {
         // 글 목록
         listBoard();
@@ -230,16 +235,22 @@
         let response = await fetch(url+urlParams, fetchOptions);
         let data = await response.json();
 
-        // console.log(data);
+        console.log(data);
 
         if(data.result == "success"){
             makeListHtml(data.list);
             TOTAL_LIST_COUNT = data.count;
-        }else if(data.result=="fail"){
+            addPagination();
+        }else if(data.result=="fail"){ // 네트워크 장애, 임시, 필터 거부 ...
             alert("글 불러오기 과정에서 오류 발생")
         }else if(data.result == "login"){
             window.location.href = "/pages/login";
+        }else if(data.result == "exception"){ // 비즈니스 로직 처리 예외 ...
+            alertify.error("글 조회 과정에서 예외 발생");
         }
+
+        // 위 fail, exception을 하나로 할 수도 있겠지
+        // else if(data.result == "fail" || data.result=="exception") {}
     }
 
     function makeListHtml(list){
@@ -274,7 +285,17 @@
             }
         } );
     }
+    function addPagination(){
+        // pagenation 은 여러 화면에서 함께 사용할 수 있는 공통 컴포넌트
+        // 한 곳에 만들어두고 재사용 => util.js 에 구현
+        makePaginationHtml(LIST_ROW_COUNT,PAGE_LINK_COUNT,CURRENT_PAGE_INDEX,TOTAL_LIST_COUNT, "paginationWrapper");
 
+    }
+    function movePage(pageIndex){
+        OFFSET = (pageIndex-1) * LIST_ROW_COUNT;
+        CURRENT_PAGE_INDEX = pageIndex;
+        listBoard();
+    }
     async function detailBoard(boardId){
         let fetchOptions = {
             method: "GET",

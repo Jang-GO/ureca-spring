@@ -12,21 +12,22 @@ import org.springframework.web.servlet.HandlerInterceptor;
 @Slf4j
 public class LoginInterceptor implements HandlerInterceptor {
     private static final String JSON_STR = "{\"result\":\"login\"}";
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.info("LoginInterceptor >>>>> {}", request.getRequestURI());
         HttpSession session = request.getSession();
         UserDto userDto = (UserDto) session.getAttribute("userDto");
 
-        if(userDto == null){
+        if (userDto == null) {
             // ajax 요청
             // client 가 header 에 "ajax":"true" <- board.jsp
             // {"result":"login"} json 문자열 return
             // client 의 javascript 에서 window.location.href 이용해서 페이지 이동
-            if("true".equals(request.getHeader("ajax"))){
+            if ("true".equals(request.getHeader("ajax"))) {
                 log.info("LoginInterceptor >>>>> ajax request");
                 response.getWriter().write(JSON_STR);
-            }else{ // page 요청
+            } else { // page 요청
                 log.info("LoginInterceptor >>>>> page request");
                 response.sendRedirect("/pages/login");
             }
@@ -35,3 +36,6 @@ public class LoginInterceptor implements HandlerInterceptor {
         return true;
     }
 }
+
+// 페이지 요청과 Ajax 요청을 구분하는 이유
+// *

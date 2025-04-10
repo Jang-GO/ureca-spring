@@ -48,4 +48,25 @@
         delete from board
         where board_id = #{boardId}
     </delete>
+
+    <select id = "countBoardUserRead" parameterType="hello.springbootmvcboard.board.dto.BoardParamDto">
+        select count(*)
+        from board_user_read
+        where board_id = #{boardId}
+        and user_seq = #{userSeq}
+    </select>
+
+    <insert id="insertBoardUserRead" parameterType="hello.springbootmvcboard.board.dto.BoardParamDto">
+        insert into board_user_read(board_id, user_seq)
+        values (#{boardId}, #{userSeq})
+    </insert>
+
+    <!-- 동시 접속이 폭주하는 상황 등 에서는 매번 1건씩 갱신하면 조회도 못하고 매우 느린 처리가 진행될 수 있다.
+         그래서 조회를 처리하고 대신 요청 건을 일괄 처리 후 일괄 update  를 하는 경우도 있다.-->
+
+    <update id="updateBoardReadCount" parameterType="int">
+        update board
+        set read_count = read_count+1
+        where board_id = #{boardId};
+    </update>
 </mapper>
