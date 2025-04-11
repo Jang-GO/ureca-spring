@@ -143,16 +143,19 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
+    @Transactional // 조회수 및 게시판 둘 다 삭제
     public BoardResultDto deleteBoard(int boardId) {
         BoardResultDto boardResultDto = new BoardResultDto();
         try{
+            int ret1 = boardDao.deleteBoardUserRead(boardId); // FK issue: child 먼저 삭제
             int ret = boardDao.deleteBoard(boardId);
 
-            if(ret==1) boardResultDto.setResult("success");
+            if(ret1 == 1 &&ret==1) boardResultDto.setResult("success");
             else boardResultDto.setResult("fail");
         }catch (Exception e){
             e.printStackTrace();
             boardResultDto.setResult("fail");
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
         }
 
         return boardResultDto;
