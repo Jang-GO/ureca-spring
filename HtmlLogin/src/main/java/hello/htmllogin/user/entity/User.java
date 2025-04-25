@@ -20,6 +20,7 @@ public class User {
     private String email;
     private String password;
 
+//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @OneToMany(fetch = FetchType.EAGER)
     @ToString.Exclude
     private Set<UserRole> userRoles = new HashSet<>();

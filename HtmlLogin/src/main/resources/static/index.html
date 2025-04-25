@@ -1,65 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<style>
+		#navbar{display: none;}
+	</style>
 </head>
 <body>
-<h1>index.html</h1>
-<hr>
-<a href="/login.html" id="linkLogin">로그인 |</a>
-<span id="userNameWrapper"><span id="userName"></span>님 안녕하세요. |</span>
-<a href="#" id="linkLogout">로그아웃 |</a>
-<a href="/another.html">다른 페이지</a>
+	<h1>index.html</h1>
+	<hr>
+	<div id = "navbar">
+		<a href="/login.html" id="linkLogin">Login |</a>
+		<span id="userNameWrapper"><span id="userName"></span>님 안녕하세요. |</span>
+		<a href="#" id="linkLogout">Logout |</a>
+		<a href="/another.html">다른 페이지 |</a>
+		<a href="/register.html" id="linkRegister">회원가입</a>
+	</div>
 
+
+<script src="/assets/js/common.js"></script>
 <script>
-    window.onload = function(){
-        initUI();
-        document.querySelector("#linkLogout").onclick = logout;
-    }
-
-    function initUI() {
-        // 로그인 상태를 확인 -> UI 처리
-        let name = sessionStorage.getItem("name");
-
-        if (name != null) {
-            document.querySelector("#userName").innerHTML = name;
-            document.querySelector("#userNameWrapper").style.display = 'inline';
-            document.querySelector("#linkLogout").style.display = 'inline';
-            document.querySelector("#linkLogin").style.display = 'none';
-        } else {
-            document.querySelector("#userName").innerHTML = '';
-            document.querySelector("#userNameWrapper").style.display = 'none';
-            document.querySelector("#linkLogout").style.display = 'none';
-            document.querySelector("#linkLogin").style.display = 'inline';
-        }
-
-        document.querySelector("#linkLogout").onclick = logout
-
-    }
-
-
-    async function logout() {
-        let url = "/users/logout";
-
-        let response = await fetch(url);
-        let data = await response.json();
-
-        console.log(data);
-
-        if (data.result == 'success') {
-            sessionStorage.removeItem("name");
-            sessionStorage.removeItem("email");
-
-            // 한꺼번에 삭제
-            // sessionStorage.clear();
-
-            window.location.href = "/index.html";
-
-            init
-        }
-    }
-
-</script>
+	window.onload = function(){
+		initUI();	
+		
+		// 로그아웃
+		document.querySelector("#linkLogout").onclick = logout
+	}
+	
+</script>	
 </body>
 </html>
