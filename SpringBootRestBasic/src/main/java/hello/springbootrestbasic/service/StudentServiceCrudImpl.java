@@ -155,7 +155,7 @@ public class StudentServiceCrudImpl implements StudentServiceCrud{
             List<Student> studentList = page.toList();
             List<StudentDto> studentDtoList = new ArrayList<>();
 
-            studentList.forEach(student -> {
+            studentDtoList.forEach(student -> {
                 StudentDto studentDto = StudentDto.builder()
                         .id(student.getId())
                         .name(student.getName())

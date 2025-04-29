@@ -3,40 +3,34 @@ package hello.springbootrestbasic.controller;
 import hello.springbootrestbasic.dto.StudentDto;
 import hello.springbootrestbasic.dto.StudentResultDto;
 import hello.springbootrestbasic.service.StudentServiceCrud;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
-@Tag(name="기본 student CRUD API", description = "Student 등록 수정 삭제 조회")
-public class StudentControllerCrud {
+@RequestMapping("/api/json")
+public class StudentControllerCrudJsonRequest {
     private final StudentServiceCrud studentService;
 
-    @Operation(summary = "학생 목록 조회", description = "전체 학생을 조회합니다")
     @GetMapping("/students")
     public StudentResultDto listStudent(){
         return studentService.listStudent();
     }
 
-    @Operation(summary = "학생상세 조회", description = "개별 학생을 조회합니다", deprecated = true)
     @GetMapping("/students/{id}")
     public StudentResultDto detailStudent(@PathVariable("id") int id){
         return studentService.detailStudent(id);
     }
-    @Operation(summary = "학생 등록", description = "학생을 등록합니다", hidden = true)
+
+    // 등록, 수정에 사용되는 StudentDto를 Client에서 Json 으로 보낸다.
     @PostMapping("/students")
-    public StudentResultDto insertStudent(StudentDto studentDto){
+    public StudentResultDto insertStudent(@RequestBody StudentDto studentDto){
         return studentService.insertStudent(studentDto);
     }
 
-    @Operation(summary = "학생 수정", description = "학생을 수정합니다")
     @PutMapping("/students/{id}")
-    public StudentResultDto updateStudent(@PathVariable("id") int id, StudentDto
-            studentDto){
+    public StudentResultDto updateStudent(@PathVariable("id") int id,@RequestBody StudentDto studentDto){
         studentDto.setId(id);
         return studentService.updateStudent(studentDto);
     }
