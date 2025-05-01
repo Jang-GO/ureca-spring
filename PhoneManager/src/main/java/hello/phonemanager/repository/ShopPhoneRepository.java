@@ -15,6 +15,11 @@ public interface ShopPhoneRepository {
     void removePhoneFromShop(@Param("shopId") Long shopId, @Param("phoneId") Long phoneId);
     List<Phone> findAll();
 
-    ShopPhoneDetail findByShopIdAndPhoneId(Long shopId, Long phoneId);
+    ShopPhoneDetail findByShopIdAndPhoneId(@Param("shopId") Long shopId, @Param("phoneId") Long phoneId);
+
     void updateStock(@Param("shopId") Long shopId, @Param("phoneId") Long phoneId, @Param("stock") int additionalStock);
+
+    // 테스트용 메서드
+    void deleteAll();
+
 }

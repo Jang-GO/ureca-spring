@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hello.phonemanager.repository.PhoneRepository">
+    <insert id="insertPhone" parameterType="hello.phonemanager.domain.Phone" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO phone (name, brand, price, release_date)
+        VALUES (#{name}, #{brand}, #{price}, NOW())
+    </insert>
+    <delete id="deleteAll">
+        delete from phone;
+    </delete>
+</mapper>

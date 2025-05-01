@@ -11,5 +11,6 @@
         <mapper resource="mapper/ShopMapper.xml"/>
         <mapper resource="mapper/ShopPhoneMapper.xml"/>
         <mapper resource="mapper/SaleMapper.xml"/>
+        <mapper resource="mapper/PhoneMapper.xml"/>
     </mappers>
 </configuration>

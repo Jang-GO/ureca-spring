@@ -25,6 +25,11 @@
         VALUES (#{shopId}, #{phoneId}, #{stock}, NOW())
     </insert>
 
+    <insert id="insertPhone" parameterType="map">
+        INSERT INTO shop_phone (shop_id, phone_id, stock, created_at)
+        VALUES (#{shopId}, #{phoneId}, #{stock}, NOW())
+    </insert>
+
     <!-- 재고 차감 (판매) -->
     <update id="decreaseStock" parameterType="map">
         UPDATE shop_phone
@@ -46,8 +51,8 @@
         FROM phone
     </select>
 
-    <select id="findByShopIdAndPhoneId" resultType="hello.phonemanager.domain.dto.ShopPhoneDetail">
-        SELECT sp.shop_id, sp.phone_id, sp.stock, p.name, p.brand, p.price, p.release_date
+    <select id="findByShopIdAndPhoneId" parameterType="long" resultType="hello.phonemanager.domain.dto.ShopPhoneDetail">
+        SELECT sp.phone_id, sp.stock, p.name, p.brand, p.price, p.release_date
         FROM shop_phone sp
                  JOIN phone p ON sp.phone_id = p.id
         WHERE sp.shop_id = #{shopId} AND sp.phone_id = #{phoneId}
@@ -58,4 +63,10 @@
         SET stock = stock + #{stock}
         WHERE shop_id = #{shopId} AND phone_id = #{phoneId}
     </update>
+
+    <delete id="deleteAll">
+        delete from shop_phone;
+    </delete>
+
+
 </mapper>

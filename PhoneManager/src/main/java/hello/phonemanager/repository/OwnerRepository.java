@@ -19,4 +19,6 @@ public interface OwnerRepository {
     boolean checkPassword(String username, String password);
 
     Owner findByShopId(Long shopId);
+
+    void deleteAll();
 }

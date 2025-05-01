@@ -13,4 +13,6 @@ public interface ShopRepository {
     void updateShop(Shop shop);
     void deleteShop(Long id);
     int countByOwnerId(Long ownerId);
+
+    void deleteAll();
 }
