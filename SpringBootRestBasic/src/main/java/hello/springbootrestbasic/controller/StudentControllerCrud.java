@@ -6,12 +6,14 @@ import hello.springbootrestbasic.service.StudentServiceCrud;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
+@Slf4j
 @Tag(name="기본 student CRUD API", description = "Student 등록 수정 삭제 조회")
 public class StudentControllerCrud {
     private final StudentServiceCrud studentService;
@@ -19,6 +21,9 @@ public class StudentControllerCrud {
     @Operation(summary = "학생 목록 조회", description = "전체 학생을 조회합니다")
     @GetMapping("/students")
     public StudentResultDto listStudent(){
+        log.debug("listStudent() debug");
+        log.info("listStudent() debug");
+        log.warn("listStudent() debug");
         return studentService.listStudent();
     }
 

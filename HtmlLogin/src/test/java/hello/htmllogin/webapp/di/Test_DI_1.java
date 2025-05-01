@@ -1,4 +1,4 @@
-package hello.htmllogin.webapp;
+package hello.htmllogin.webapp.di;
 
 // Spring Context 전체를 이용한 Test
 // => @SpringbootTest

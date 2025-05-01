@@ -1,7 +1,8 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/rest_basic
+#    url: jdbc:mysql://localhost:3306/rest_basic
+    url: jdbc:mysql://localhost:3306/basic_logging
     username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
   jpa:

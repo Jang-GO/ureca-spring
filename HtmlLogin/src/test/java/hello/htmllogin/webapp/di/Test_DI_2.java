@@ -1,7 +1,6 @@
-package hello.htmllogin.webapp;
+package hello.htmllogin.webapp.di;
 
 import hello.htmllogin.user.controller.UserController;
-import hello.htmllogin.user.entity.User;
 import hello.htmllogin.user.repository.UserRepository;
 import hello.htmllogin.user.service.UserService;
 import jakarta.persistence.EntityManager;
