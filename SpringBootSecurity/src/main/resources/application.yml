@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: SpringBootSecurity
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/basic_security
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
+  jpa:
+      #    hibernate:
+      #      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false # ??? ????? view ?? ???? ??
+
+logging:
+  level:
+    org.springframework.security: debug
